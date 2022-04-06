@@ -1,0 +1,44 @@
+class Mat2x2:
+    def __init__(self, mat_list):
+        self.mat_list = mat_list
+        
+    def __str__(self):
+        return self.mat_list
+        
+        
+    def add(self, mat_list2):
+        res = [[self.mat_list[0][0] + mat_list2[0][0], self.mat_list[0][1]+mat_list2[0][1]],[self.mat_list[1][0] + mat_list2[1][0], self.mat_list[1][1]+mat_list2[1][1]]]
+        
+        self.mat_list = res
+        
+        return self.mat_list
+        
+    def multiply(self, mat_list2):
+        res = [[(self.mat_list[0][0]*mat_list2[0][0])+(self.mat_list[0][1]*mat_list2[1][0]),(self.mat_list[0][0]*mat_list2[0][1]+self.mat_list[0][1]*mat_list2[1][1])],
+               [(self.mat_list[1][0]*mat_list2[0][0])+(self.mat_list[1][1]*mat_list2[1][0]),(self.mat_list[1][0]*mat_list2[0][1]+self.mat_list[1][1]*mat_list2[1][1])]]
+        
+        self.mat_list = res
+        
+        return self.mat_list
+
+        
+    def invert(self):
+       det= 1/( (self.mat_list[0][0] * self.mat_list[1][1]) - (self.mat_list[0][1] * self.mat_list[1][0]) )
+       invers =[
+           [det * self.mat_list[1][1] ,det * (- self.mat_list[0][1])],
+           [det * (- self.mat_list[1][0]) ,det * (self.mat_list[0][0])]
+
+           ]
+       self.mat_list= invers
+        
+def main():
+    my_mat = Mat2x2([[1,2],[3,4]])
+    my_mat.invert()
+    print(my_mat.__str__())
+    my_mat = Mat2x2([[5,6],[7,8]])
+    my_mat.invert()
+    print(my_mat.__str__())
+
+
+
+main()

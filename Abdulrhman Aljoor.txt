@@ -1,0 +1,73 @@
+
+
+class Mat2x2:
+    def __init__(self,mat_list):
+        self.mat_list=mat_list
+    def __str__(self):
+        return str(self.mat_list)
+
+
+    def Check_dimentionsMatrix(self,new_listMat):
+        if len(self.mat_list) == len(self.mat_list[0]) and len(new_listMat) == len(new_listMat[0]) and len(new_listMat) == len(self.mat_list) :
+            return True
+
+    def add(self,new_mat_list):
+        templist=self.mat_list
+        if len(self.mat_list) == len(self.mat_list[0]) and len(new_mat_list) == len(new_mat_list[0]) and len(new_mat_list) == len(self.mat_list) :
+            for i in range(len(self.mat_list)):
+                for e in range(len(self.mat_list[i])):
+                    self.mat_list[i][e] +=new_mat_list[i][e]
+        else:
+            if self.mat_list == templist:
+                self.mat_list='[error add Method]:\nClass Mat2x2 Only Supports adding two matrices with the same dimensions, for example: (2x2)'
+ 
+    def multiply(self, new_mat_list):
+        try:
+
+            temp0= (self.mat_list[0][0] * new_mat_list[0][0]) + (self.mat_list[0][1]  * new_mat_list[1][0])
+            temp1= (self.mat_list[0][0] * new_mat_list[0][1]) + (self.mat_list[0][1]  * new_mat_list[1][1])
+            temp2= (self.mat_list[1][0] * new_mat_list[0][0]) + (self.mat_list[1][1]  * new_mat_list[1][0])
+            temp3= (self.mat_list[1][0] * new_mat_list[0][1]) + (self.mat_list[1][1]  * new_mat_list[1][1])
+            self.mat_list=[[temp0,temp1],[temp2,temp3]]
+    
+        except Exception as ex:
+            self.mat_list= f'[error muliply Method]:\n{str(ex)}'
+
+
+    def invers(self):
+        determinant= 1/( (self.mat_list[0][0] * self.mat_list[1][1]) - (self.mat_list[0][1] * self.mat_list[1][0]) ) 
+        invers =[
+                [determinant * self.mat_list[1][1] ,determinant * (- self.mat_list[0][1])],
+                [determinant * (- self.mat_list[1][0]) ,determinant * (self.mat_list[0][0])]
+            ]  
+
+
+        self.mat_list= invers
+        
+
+
+
+def main():
+    my_mat =Mat2x2([[1,2],[3,4]])
+    print(my_mat)
+    my_mat.add([
+            [5,6],
+            [7,8]
+            ])
+
+    print("add:" ,my_mat)
+    my_mat.multiply([
+                [5,4],
+                [3,2]
+                ])
+    print("Multiply: ",my_mat)    
+
+
+    my_mat = Mat2x2([[1,2],[3,4]])
+    my_mat.invers()
+    print("invers:", my_mat)
+    my_mat = Mat2x2([[5,6],[7,8]])
+    my_mat.invers()
+    print("invers:",  my_mat)
+    
+main()
