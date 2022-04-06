@@ -7,5 +7,5 @@ You can run it on a real example of cheating, to see the result you should run:
 
 Look into the example.sh file to see how to use the acf.py script.
 
-##How to interpret the output:
+## How to interpret the output:
 I would suggest look for the areas in both texts where there are matched characters (with the red color) with little or no unmatched (white colored) characters.
