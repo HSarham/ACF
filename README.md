@@ -1,6 +1,6 @@
 # ACF: Assignment Cheater Finder
 
-This is a simple python script that finds the longest common subsequence between two text files and hightlights them on both texts.
+This is a simple python script that finds the longest common subsequence (LCS) between two text files and hightlights them on both texts.
 You can run it on a real example of cheating, to see the result you should run:
 
 `sh example.sh`
