@@ -1,1 +1,2 @@
-python3 acf.py Azra\ Tokovic.txt Abdulrhman\ Aljoor.txt
+./ACF ./samples
+./ACF ./samples Azra\ Tokovic.txt Abdulrhman\ Aljoor.txt
