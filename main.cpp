@@ -154,7 +154,7 @@ ComparisonResult compare_files(string path_1, string path2){
 int main(int argc, char* argv[]){
 
     if (argc<2){
-        cout<<"Args: (<input_folder> | <input_file_1> <input_file_2>)"<<endl;
+        cout<<"Args: <input_folder> [ <input_file_1> <input_file_2> ]"<<endl;
         return 0;
     }
 
@@ -177,7 +177,9 @@ int main(int argc, char* argv[]){
         const size_t num_files = file_paths.size();
         vector<ComparisonResult> comparison_reuslts;
         for (int i=0; i<num_files; i++){
+            cout<<"Comparing "<<file_paths[i].filename()<<" with:"<<endl;
             for (int j=i+1; j<num_files; j++){
+                cout<<"\t"<<file_paths[j].filename()<<endl;
                 ComparisonResult comparison_result = compare_files(file_paths[i],file_paths[j]);
                 comparison_result.file_name_1 = file_paths[i].filename();
                 comparison_result.file_name_2 = file_paths[j].filename();
@@ -190,10 +192,11 @@ int main(int argc, char* argv[]){
         }
     }
     if (!folder_mode){
-        auto comparison_result = compare_files(argv[1],argv[2]);
-        cout<<comparison_result.max_common_string_1()<<endl;
+
+        auto comparison_result = compare_files(string(argv[1])+"/"+string(argv[2]),string(argv[1])+"/"+string(argv[3]));
+        cout<<comparison_result.colored_string_1<<endl;
         cout<<"------------------"<<endl;
-        cout<<comparison_result.max_common_string_2()<<endl;
+        cout<<comparison_result.colored_string_2<<endl;
     }
 
     return 0;
